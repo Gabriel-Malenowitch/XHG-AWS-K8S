@@ -8,7 +8,7 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/aws-copy',
 
   server: {
-    port: 4200,
+    port: 3000,
     host: 'localhost',
   },
 

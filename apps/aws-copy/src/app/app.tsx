@@ -1,10 +1,8 @@
-import NxWelcome from './nx-welcome';
-
-export function App() {
+const App = () => {
   return (
-    <div>
-      <NxWelcome title="aws-copy" />
-    </div>
+    <Menu>
+      
+    </Menu>
   );
 }
 
