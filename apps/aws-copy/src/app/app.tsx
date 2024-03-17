@@ -1,5 +1,8 @@
-import { AppContextProvider, useAppContextProvider } from "@aws-copy/context-hooks/app-context";
+import { AppContextProvider, NotifyProvider, useAppContextProvider } from "@aws-copy/context-hooks";
 import { Menu, MenuItem } from "@aws-copy/core";
+import { BasicConfig } from "@aws-copy/app";
+import { FormProvider, useForm } from "react-hook-form";
+import { FormValues } from "@aws-copy/models/form-values";
 
 const Content = () => {
   const [context] = useAppContextProvider()
@@ -11,19 +14,21 @@ const Content = () => {
     )
 }
 
-const App = () => {
+export const App = () => {
+  const formMethods = useForm<FormValues>()
+  
   return (
     <AppContextProvider>
-      <div className="flex flex-row justify-between p-4 h-screen gap-4">
-        <Menu>
-          <MenuItem element={<>Hello world 1!</>} label="Dashboard 1" resource="/1" />
-          <MenuItem element={<>Hello world 2!</>} label="Dashboard 2" resource="/2" />
-          <MenuItem element={<>Hello world 3!</>} label="Dashboard 3" resource="/3" />
-        </Menu>
-        <Content />
-      </div>
+      <NotifyProvider>
+        <FormProvider {...formMethods}>
+        <div className="flex flex-row justify-between p-4 h-screen gap-4">
+          <Menu>
+            <MenuItem element={<BasicConfig />} label="Dashboard" resource="/basic-config" />
+          </Menu>
+          <Content />
+        </div>
+        </FormProvider>
+      </NotifyProvider>
     </AppContextProvider>
   );
 }
-
-export default App;
